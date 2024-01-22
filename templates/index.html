@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stock Predictor</title>
+  <link href="{{ url_for('static', filename='css/style.css')}}" rel="stylesheet" />
+  <!-- flask imports css style sheet slightly differently -->
+</head>
+
+<body>
+  <header>
+    <navbar>
+      <ul>
+          <li><a href="/about">About</a></li>
+      </ul>
+  </navbar>
+  </header>
+  <hr>
+  <main>
+    <h1>Stock Predictor</h1>
+    <p>Predict the future price of a stock using machine learning!</p>
+
+    <form action="/prediction">
+      <label for="ticker">Enter Stock Symbol:</label>
+      <input type="text" id="ticker" name="ticker" required placeholder="TSLA"></input>
+      <p>Choose Data Interval to Train Model With:</p>
+      <label for="1d">
+        <input type="radio" id="1d" name="interval" value="1d" required>Daily</input>
+      </label>
+      <label for="1wk">
+        <input type="radio" id="1wk" name="interval" value="1wk">Weekly</input>
+      </label>
+      <label for="1mo">
+        <input type="radio" id="1mo" name="interval" value="1mo">Monthly</input>
+      </label>
+      <label for="start-date">Start Date of Data(Default is the maximum date):</label>
+      <input type="date" id="start-date" name="start-date" required value="1970-01-01">
+      <input type="submit"></input>
+      </form>
+  </main>
+  <hr>
+  <footer>
+    <p>Created by: Jose Jimenez Caballero</p>
+    <p>For educational purposes</p>
+  </footer>
+</body>
+
+</html>
