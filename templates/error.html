@@ -26,6 +26,7 @@
       <label for="ticker">Please Enter <u>Correct</u> Stock Symbol:</label>
       <input type="text" id="ticker" name="ticker" required placeholder="TSLA"></input>
       <p>Choose Data Interval to Train Model With:</p>
+      <div>
       <label for="1d">
         <input type="radio" id="1d" name="interval" value="1d" required>Daily</input>
       </label>
@@ -35,6 +36,7 @@
       <label for="1mo">
         <input type="radio" id="1mo" name="interval" value="1mo">Monthly</input>
       </label>
+      </div>
       <label for="start-date">Start Date of Data(Default is the maximum date):</label>
       <input type="date" id="start-date" name="start-date" required value="1970-01-01">
       <input type="submit"></input>

@@ -1,5 +1,57 @@
+html {
+  height: 100%;
+  width: 100%;
+}
+
 ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-  }
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #6C757D;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: #f8f9fa;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+  background-color: #343A40;
+}
+
+body {
+  text-align: center;
+  font-family: "Capsule Sans Text",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;;
+  background-color: #F8F9FA;
+  font-size: 20px;
+}
+
+h1 {
+  font-size: 60px;
+  font-weight: normal;
+  margin-bottom: 0px;
+}
+
+h2 {
+  font-size: 25px;
+  font-weight: normal;
+  margin-top: 0;
+  padding-bottom: 19px;
+}
+
+hr {
+    border: 0;
+    height: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
