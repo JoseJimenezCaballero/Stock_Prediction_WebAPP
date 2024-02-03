@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="dark">
 
 <head>
   <meta charset="UTF-8">
@@ -12,13 +12,22 @@
 
 <body>
   <header>
-    <navbar>
-        <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/about">About</a></li>
-        </ul>
-    </navbar>
-  </header>
+    <nav id="mainNav" class="navbar navbar-expand-lg bg-body-tertiary ">
+      <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-link active" aria-current="page" href="/index">Home</a>
+            <a class="nav-link" href="/about">About</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+    </header>
+
   <main>
     <h1>{{ ticker }}</h1>
     <p> Model trained on {{ size_of_training }} {{ interval }}s of data {{ perf }} stocks return by {{percentage}}%
