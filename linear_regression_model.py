@@ -69,9 +69,6 @@ def linear_regression(ticker,interval,start):
                            "current_price":info.info.get('bid')}
 
     
-
-
-
     return data
 
 #if the file is executed directly through the terminal
