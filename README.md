@@ -7,8 +7,12 @@ This app was built using a combination of programming languages and libraries. I
 
 
 
+----------V2---------------------
+Redesigned website with bootsrap and javaScript for better UX
+User no longer able to choose train dates for models. They will default to the maximul allowed data.
+
+
 
 To do:
-  Style the pages
+  Add about and models pages
   Add more prediction models, so the user can pick the best one
-  Add visuals to compare returns of asset and prediction model

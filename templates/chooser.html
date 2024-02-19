@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Machine Learning Predictions</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/style_chooser.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+
+<body class="scroll-top" data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="100">
+  <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/index"><i class="bi bi-house"></i></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-link" href="#">Models</a>
+          <a class="nav-link" href="#">About Website</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div id="header" class="container">
+    <div class="row gy-2 gx-1">
+      <div class="col-12">
+        <h2>{{ ticker_name }}</h2>
+        <h1>${{ current_price }}</h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <h3 style="margin-bottom: 20px;">Pick Model(s) to train:</h2>
+      </div>
+    </div>
+    <form action="/final">
+      <div class="row gy-2 gx-1">
+        <div id="cards" class="col-md-6">
+          <input class="hidden" type="checkbox" id="demo" name="linear" />
+          <label for="demo">
+            <div class="card mx-auto border-success" style="width: 12rem;">
+              <img src="/static/images/Linear_Regression-512.png" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h6 class="card-title">Linear Regression</h6>
+                <p style="font-size: 10px;" class="card-text">Finds the line that best fits data to predict one variable
+                  based on another.</p>
+              </div>
+            </div>
+          </label>
+        </div>
+        <div id="cards" class="col-md-6">
+          <input class="hidden" disabled type="checkbox" id="demo2" name="model2" />
+          <label for="demo2">
+            <div id="demoo2" class="card mx-auto border-dark" style="width: 12rem;">
+              <img src="/static/images/logistic-regression_1998661.png" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h6 class="card-title">Logistic Regression</h6>
+                <p class="card-text">Coming soon </p>
+              </div>
+            </div>
+          </label>
+        </div>
+      </div>
+      <div style="margin-top: 30px;" class="row">
+        <div class="col-12">
+          <button id="gg" onclick="TestsFunction()" class="btn btn-outline-success" type="submit">Train Model</button>
+        </div>
+        <input style="display: none;" class="form-control " value="{{ ticker }}" type="text" id="ticker"
+          name="ticker"></input>
+        <div id="hide" class="container" style="display: none;">
+          <span style="margin-right: 20px;" id="wait_text">Training model, please wait..</span>
+          <span id="loader" class="container spinner-grow text-light">
+          </span>
+        </div>
+      </div>
+    </form>
+  </div>
+  </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+<script src="/static/javascript/script_chooser.js"> </script>
+
+</html>

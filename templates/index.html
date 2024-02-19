@@ -3,50 +3,62 @@
 
 <head>
   <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Stock Predictor</title>
-  <link href="{{ url_for('static', filename='css/style.css')}}" rel="stylesheet" />
-  <!-- flask imports css style sheet slightly differently -->
+  <title>Machine Learning Predictions</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="static/css/style_index.css">
 </head>
 
-<body>
-  <header>
-    <navbar>
-      <ul>
-          <li><a href="/about">About</a></li>
-      </ul>
-  </navbar>
-  </header>
-  <hr>
-  <main>
-    <h1>Stock Predictor</h1>
-    <p>Predict the future price of a stock using machine learning!</p>
-
-    <form action="/prediction">
-      <label for="ticker">Enter Stock Symbol:</label>
-      <input type="text" id="ticker" name="ticker" required placeholder="TSLA"></input>
-      <p>Choose Data Interval to Train Model With:</p>
-      <div>
-      <label for="1d">
-        <input type="radio" id="1d" name="interval" value="1d" required>Daily</input>
-      </label>
-      <label for="1wk">
-        <input type="radio" id="1wk" name="interval" value="1wk">Weekly</input>
-      </label>
-      <label for="1mo">
-        <input type="radio" id="1mo" name="interval" value="1mo">Monthly</input>
-      </label>
+<body class="scroll-top" data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="100">
+  <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/index"><i class="bi bi-house"></i></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-link" href="#">Models</a>
+          <a class="nav-link" href="#">About Website</a>
+        </div>
+      </div>
     </div>
-      <label for="start-date">Start Date of Data(Default is the maximum date):</label>
-      <input type="date" id="start-date" name="start-date" required value="1970-01-01">
-      <input type="submit"></input>
-      </form>
-  </main>
-  <hr>
-  <footer>
-    <p>Created by: Jose Jimenez Caballero</p>
-    <p>For educational purposes</p>
-  </footer>
+  </nav>
+
+  <div id="header" class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <h1>Machine Learning Predictions</h1>
+        <p>Train a Machine Learning Model of your choosing to Predict Stock Prices.</p>
+      </div>
+      <div class="col-md-6">
+        <img src="/static/images/artificial-intelligence-3685928_1280.png">
+      </div>
+      <div id="label-container" class="col-12">
+        <form action="/chooser">
+          <label for="ticker" class="">Enter Stock Ticker to Begin:</label>
+          <input style="color: white;" class="form-control bg-transparent" type="text" id="ticker" name="ticker"
+            required placeholder="TSLA"></input>
+          <div style="margin-top: 20px;" class="container">
+            <button id="gg" style="background-color:transparent" class="btn" type=" submit"><i
+                style="font-size: 30px; color: white;" class="bi bi-arrow-right-circle"></i></button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+
 </body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+<script src="/static/javascript/script_index.js"> </script>
 
 </html>
