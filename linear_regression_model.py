@@ -61,14 +61,12 @@ def linear_regression(ticker,interval,start):
     #data will also contain "nxt_prediction key" which will return 1 if buy or -1 if sell for that interval
 
     info = yf.Ticker(ticker)
-    
 
     data = {"model_performance":[1 if comp["returns"] < comp["strat_LR"] else -1,
                            abs(comp["returns"] - comp["strat_LR"])/((comp["returns"] + comp["strat_LR"])/2) *100],
                            "nxt_prediction":test.iloc[-1, -2],"size_of_training":len(train), "name":info.info.get("shortName"),
-                           "current_price":info.info.get('bid')}
+                           "current_price":info.info.get('currentPrice') if info.info.get('currentPrice') != None else info.info.get('bid') }
 
-    
     return data
 
 #if the file is executed directly through the terminal
