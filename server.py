@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
 from linear_regression_model import linear_regression, lag
 from waitress import serve #used to serve our app
+from stock_name import get_ticker #used to get stock ticker based on user input
 
 app = Flask(__name__) #makes our application a flask app, will be our WSGI application.
 
@@ -13,6 +14,7 @@ def index():
 @app.route('/chooser')
 def chooser():
     ticker = request.args.get('ticker')#get arguments from previous form request
+    ticker = get_ticker(ticker)
     try:
         data = linear_regression(ticker,"1d","2024-01-01")
     except:
