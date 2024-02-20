@@ -98,6 +98,7 @@ def make_prediction():
 
     ticker = data_d.get("name")
     current_price = data_d.get('current_price')
+    current_price = "{:.2f}".format(current_price) #make sure the value is only two decimal places.
 
     return render_template("final.html",ticker=ticker, current_price=current_price, percentage_m=percentage_m, perf_m=perf_m, month_pred=month_pred
                            ,size_of_train_m=size_of_train_m, percentage_w=percentage_w, perf_w=perf_w, week_pred=week_pred
