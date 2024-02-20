@@ -14,7 +14,11 @@ def index():
 @app.route('/chooser')
 def chooser():
     ticker = request.args.get('ticker')#get arguments from previous form request
-    ticker = get_ticker(ticker)
+    try:
+        ticker = get_ticker(ticker)
+    except:
+        return render_template('error.html') #implement error page
+
     try:
         data = linear_regression(ticker,"1d","2024-01-01")
     except:
@@ -22,6 +26,7 @@ def chooser():
     
     ticker_name = data.get("name")
     current_price = data.get('current_price')
+    current_price = "{:.2f}".format(current_price) #make sure the value is only two decimal places.
 
     return render_template("chooser.html", ticker=ticker, ticker_name=ticker_name, current_price=current_price)
     
