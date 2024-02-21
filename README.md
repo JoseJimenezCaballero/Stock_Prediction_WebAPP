@@ -7,7 +7,7 @@ This app was built using a combination of programming languages and libraries. I
 
 
 
-----------V2---------------------
+------------------------------------------------------V2---------------------------------------------------------------
 Redesigned website with bootsrap and javaScript for better UX
 User no longer able to choose train dates for models. They will default to the maximul allowed data.
 
