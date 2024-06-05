@@ -1,16 +1,51 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
 from linear_regression_model import linear_regression, lag
 from waitress import serve #used to serve our app
-from stock_name import get_ticker #used to get stock ticker based on user input
+from stock_name import get_ticker #used to get stock ticker based on user input if the user enters the name of the company instead of the ticker
 
 app = Flask(__name__) #makes our application a flask app, will be our WSGI application.
 
-#main route can be called by either url
+
+#-----------Route for the API requests, it will validate the request and then return a json of the appropiate information-------------
+@app.route('/api_', methods=['GET'])
+def api_():
+    ticker = request.args.get('ticker')
+
+    #data verification for all 3 time-frames(dont need to verify get_ticker since this will be used for yfinnance only)
+    try:
+        data_d = linear_regression(ticker,"1d","1970-01-01")
+    except:
+        return jsonify({'status' : 'error'})
+    
+    try:
+        data_w = linear_regression(ticker,"1wk","1970-01-01")
+    except:
+        return jsonify({'status' : 'error'})
+
+    try:
+        data_m = linear_regression(ticker,"1mo","1970-01-01")
+    except:
+        return jsonify({'status' : 'error'})
+    
+    #data to be returned will include status to signal if the api request was successful, then model performance and the prediction(needed to cast values as ints for jsonify)
+    data = {'status' : 'success', 'month' : [int(data_m.get('model_performance')[0]), int(data_m.get('nxt_prediction'))],
+            'week' : [int(data_w.get('model_performance')[0]), int(data_w.get('nxt_prediction'))],
+            'day' : [int(data_d.get('model_performance')[0]), int(data_d.get('nxt_prediction'))]}
+
+    return jsonify(data)
+
+
+
+
+#-----------------main route can be called by either url(/ or index)------------------
 @app.route('/')
 @app.route('/index')
 def index():
     return render_template('index.html')
 
+
+
+#----------------route for when the user is to choose the model to train-------------
 @app.route('/chooser')
 def chooser():
     ticker = request.args.get('ticker')#get arguments from previous form request
@@ -31,6 +66,8 @@ def chooser():
     return render_template("chooser.html", ticker=ticker, ticker_name=ticker_name, current_price=current_price)
     
 
+
+#----------------final route where all the data is displayed---------------------
 @app.route('/final')    
 def make_prediction():
     ticker = request.args.get('ticker')#get arguments from previous form request 

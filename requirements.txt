@@ -50,3 +50,4 @@ wcwidth==0.2.5
 webencodings==0.5.1
 Werkzeug==3.0.1
 yfinance==0.2.35
+jsonify==0.5
