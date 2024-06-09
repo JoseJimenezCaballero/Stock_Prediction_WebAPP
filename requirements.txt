@@ -51,3 +51,4 @@ webencodings==0.5.1
 Werkzeug==3.0.1
 yfinance==0.2.35
 jsonify==0.5
+Flask-Cors==4.0.1

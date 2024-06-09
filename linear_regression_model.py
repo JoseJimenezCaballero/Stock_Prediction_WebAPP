@@ -31,7 +31,7 @@ def linear_regression(ticker,interval,start):
 
     lag_names = lag(data_frame,5) #add the lag
     data_frame.dropna(inplace=True)#drop the 'na' values in the data which is caused by there not being prev values for the beginning data
-
+    
     #Data splitting
     train, test= train_test_split(data_frame,test_size=0.2,shuffle = False, random_state=0)#test size = 20% and no suffling so we dont lose
                                                                                            #linearity of data

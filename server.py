@@ -1,13 +1,15 @@
 from flask import Flask, render_template, request, jsonify
+from flask_cors import CORS, cross_origin #libraries used for cors headers
 from linear_regression_model import linear_regression, lag
 from waitress import serve #used to serve our app
 from stock_name import get_ticker #used to get stock ticker based on user input if the user enters the name of the company instead of the ticker
 
 app = Flask(__name__) #makes our application a flask app, will be our WSGI application.
-
+CORS(app) #makes our app CORS capable so that browsers allow scripting api calls
 
 #-----------Route for the API requests, it will validate the request and then return a json of the appropiate information-------------
 @app.route('/api_', methods=['GET'])
+@cross_origin()#make this specific route CORS capable
 def api_():
     ticker = request.args.get('ticker')
 
