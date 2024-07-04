@@ -32,7 +32,8 @@ def api_():
     #data to be returned will include status to signal if the api request was successful, then model performance and the prediction(needed to cast values as ints for jsonify)
     data = {'status' : 'success', 'month' : [int(data_m.get('model_performance')[0]), int(data_m.get('nxt_prediction'))],
             'week' : [int(data_w.get('model_performance')[0]), int(data_w.get('nxt_prediction'))],
-            'day' : [int(data_d.get('model_performance')[0]), int(data_d.get('nxt_prediction'))]}
+            'day' : [int(data_d.get('model_performance')[0]), int(data_d.get('nxt_prediction'))],
+            'name' : data_d.get('name')}
 
     return jsonify(data)
 
