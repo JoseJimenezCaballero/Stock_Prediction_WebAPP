@@ -67,6 +67,9 @@ def linear_regression(ticker,interval,start):
                            "nxt_prediction":test.iloc[-1, -2],"size_of_training":len(train), "name":info.info.get("shortName"),
                            "current_price":info.info.get('currentPrice') if info.info.get('currentPrice') != None else info.info.get('bid') }
 
+    if(info.info.get('quoteType') == 'CRYPTOCURRENCY'):#specific for crypto
+        data['current_price'] = info.info.get('regularMarketPreviousClose')
+        
     return data
 
 #if the file is executed directly through the terminal
