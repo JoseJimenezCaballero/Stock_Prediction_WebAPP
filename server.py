@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, jsonify
 from flask_cors import CORS, cross_origin #libraries used for cors headers
 from linear_regression_model import linear_regression, lag
+from logistic_regression_model import logistic_regression, lag
 from waitress import serve #used to serve our app
 from stock_name import get_ticker #used to get stock ticker based on user input if the user enters the name of the company instead of the ticker
 
@@ -16,28 +17,37 @@ def api_():
     #data verification for all 3 time-frames(dont need to verify get_ticker since this will be used for yfinnance only)
     try:
         data_d = linear_regression(ticker,"1d","1970-01-01")
+        data_dlog = logistic_regression(ticker,"1d","1970-01-01")
     except:
         return jsonify({'status' : 'error'})
     
     try:
         data_w = linear_regression(ticker,"1wk","1970-01-01")
+        data_wlog = logistic_regression(ticker,"1wk","1970-01-01")
     except:
         return jsonify({'status' : 'error'})
 
     try:
         data_m = linear_regression(ticker,"1mo","1970-01-01")
+        data_mlog = logistic_regression(ticker,"1mo","1970-01-01")
     except:
         return jsonify({'status' : 'error'})
     
     #data to be returned will include status to signal if the api request was successful, then model performance and the prediction(needed to cast values as ints for jsonify)
-    data = {'status' : 'success', 'month' : [int(data_m.get('model_performance')[0]), int(data_m.get('nxt_prediction'))],
+    data = {'status' : 'success','name' : data_d.get('name'),
+            'linear':
+            {'month' : [int(data_m.get('model_performance')[0]), int(data_m.get('nxt_prediction'))],
             'week' : [int(data_w.get('model_performance')[0]), int(data_w.get('nxt_prediction'))],
-            'day' : [int(data_d.get('model_performance')[0]), int(data_d.get('nxt_prediction'))],
-            'name' : data_d.get('name')}
+            'day' : [int(data_d.get('model_performance')[0]), int(data_d.get('nxt_prediction'))]},
+            'logistic':
+            {
+            'month' : [int(data_mlog.get('model_performance')[0]), int(data_m.get('nxt_prediction'))],
+            'week' : [int(data_wlog.get('model_performance')[0]), int(data_w.get('nxt_prediction'))],
+            'day' : [int(data_dlog.get('model_performance')[0]), int(data_d.get('nxt_prediction'))]  
+            }
+            }
 
     return jsonify(data)
-
-
 
 
 #-----------------main route can be called by either url(/ or index)------------------
